@@ -1,0 +1,57 @@
+1. O(1) constant
+    alist[1,2,3,4,5]
+    print(alist[0])
+    # no matter how many ints in the alist, it still print only one element, so it's still be O(1)
+
+2. O(n) Linear
+    EX1:
+    for i in alist:
+      print(i)
+    # so n values in the alist, print n times, this called O(n).
+    
+    EX2:
+    print alist[0]
+    midpotin = len(alist)//2
+    for val in alist[midpoint]
+        print( val)
+    for x in range(10):
+        print('hello world')
+    # although there are three parts in this function: O(1 + 1/2*n + 10) = O(n)
+    # but it still equal O(n)
+        
+        
+3. O(n^2) Quadratic
+    for i in alist:
+      for j in i:
+          print(i,j)
+    # we have two loops, totally we print n^2 times
+    
+4.Best and Worst-Case
+    we only keep an eye on the Worst-Casy
+    
+5.Space complexity
+    EX1:
+      for i in rnage(10): # time complexity is O(n)
+        print('heelo world') # space complexity is O(1)
+      
+6. Big-O in List:
+    builtin-function is the most effective method in Pyton
+    O(1): index[], index assignment, append, pop()
+    O(n): pop(i), insert(i,item), del operator, iteration, contains(in), del slice, reverse
+    O(K):get slice[x:y], concatenate 
+    O(n+k): set slice
+    O(nlogn): sort
+    O(nk) : multiply
+
+    
+7. Big-O in Dictionary
+    get, set, delete and contains(in) in a dictionary are always O(1)
+    copy and iteration are O(n)
+    
+8. some example:
+    EX1:
+    while x>0:
+      x = x//2
+    # this should be O(logn), every time x becomes half.
+    
+    
