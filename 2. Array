@@ -1,18 +1,66 @@
 1.basic computer architecture 
   all three main sequences: list, tuple, string can use indexing a[1] = 1.
+  
 2. Low-level computer architecture
   memory of a computer stored in bits
   typical unit is byte which is 8 bits 
   each byte associated with unique address
+  # like byte#2144 versus byte#2147
   computer's main memory performs as random access memory(RAM)
-  individual byte of memoru can be stored in O(1) time
-3.referential arrays
-  a group of related variables can be stored one after another in a contiguous portion of the computer's memory
-  we will denote such a representation as an array
-  each cell of an array uses the same num of bytes
-  allow any cell to be accessed in constan time
-  memory address can be computed using the : start+ (cellsize)(index)
-  each cell of the array neesd to have the same num of bytes
-  aech element is a reference to the object
-  deep copy and shallow copy
-  EX: counters = [0] * 9 is not make each index point to one 0, but all nine cells reference the same object.
+  individual byte of memory can be stored in O(1) time, constant time
+  programming language keeps track od the association between an identifier and the memory address
+  # like prefer to use asingle name for the group using index nums to refer to the high scores in that group
+  A group of related variables can be stored one after another in a contiguous portion of the computer's memory
+  We will denote such a representation as an array
+  Python internally represents each unicode character with 16 bits(2bytes)
+  Each location within an array as a cell, integer index to describe its location
+  Each cell of an array uses the same num of bytes
+  Allow any cell to be accessed in constan time
+  Memory address can be computed using the : start+ (cellsize)(index)
+  Each cell of the array neesd to have the same num of bytes
+  
+3.Referential Arrays
+  If we dont know how long will be, and dont want to waste space:
+  We can use an array of object References. And each element in the array is a reference to the object. Index1 = 'John', Index4='Lee'.
+  # when computing the slice of a list, the result is a new list instance, new list has references to the same elements that are in the original list.
+  # temp = primes[3:6] the elements from index3 to 6 are shared with two lists
+  # temp[2] = 15 just change index2 reference point to 15, not change the original one.
+  Back
+  up = list(primes) is the shallow copy, two lists reference to the same objectives
+  Deep copy get new objectives and new address (new_list = odl_list[:])
+  EX: counters = [0] * 9 is not make each index point to one 0, but all nine cells reference the same object, same address.
+  Ex: conuter[2] += 1 this create a new integer adress instead of change existing one
+  Ex: primes.extend(extra) new prime list last several index reference to the new objectives are same as in the extra list.
+  
+4.Dynamic Arrays
+   the key is to prvide means to grow the array A that stores the elements of a list
+   we cannot actually grow that array, its capacity is fixed
+   if an element is appended to alist at a time wheh the underlying array is full we'll need to perform the following steps
+
+   ### Dynamic Array Implementation ###
+   Allocate a new array B with a larger capacity
+   SetB[i] = A[i] fori = 0...n-1, where n denotes current number of items
+   Set A = B, that is we henceforth use B as the array supporting the list
+   Insert the new element in the new array (alwasy twice capacity of the existing array)
+   
+   # Excercise in 48 lecture, check it!
+   def __len__(self):
+      # get the length
+   def __getitem__(self,k):
+      # get the element in index k
+      if not 0 <= k < self.n:
+        return IndexError('k is out of bounds')
+      return self.A[k]
+   def append(self.ele):
+      if self.n == self.capacity:
+        self._resize(2*self.capaciry) # 2x if capacity is not enough
+      self.A[self.n] = ele
+      self.n += 1
+   def _resize(self,new_cap):
+      B = self.make_array(new_cap)
+      for k in range(self.n)
+        B[K] = self.A[K]
+      self.A = B
+      self.capacity = new_cap
+   def make_array(self,new_cap):
+      return (new_cap * ctypes.py_object)()
