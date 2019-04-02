@@ -1,0 +1,18 @@
+1.basic computer architecture 
+  all three main sequences: list, tuple, string can use indexing a[1] = 1.
+2. Low-level computer architecture
+  memory of a computer stored in bits
+  typical unit is byte which is 8 bits 
+  each byte associated with unique address
+  computer's main memory performs as random access memory(RAM)
+  individual byte of memoru can be stored in O(1) time
+3.referential arrays
+  a group of related variables can be stored one after another in a contiguous portion of the computer's memory
+  we will denote such a representation as an array
+  each cell of an array uses the same num of bytes
+  allow any cell to be accessed in constan time
+  memory address can be computed using the : start+ (cellsize)(index)
+  each cell of the array neesd to have the same num of bytes
+  aech element is a reference to the object
+  deep copy and shallow copy
+  EX: counters = [0] * 9 is not make each index point to one 0, but all nine cells reference the same object.
