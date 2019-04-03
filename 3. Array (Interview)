@@ -1,0 +1,41 @@
+1. Theory Questions
+    # Unfortunately, this is not the case with arrays, 
+    # you will most likely find the interview problems not having nuch 
+    # in common with the theory and execise leatures
+    these interview problems will seem very challenging. 
+    if fell stuck try writing out waht you would do manually to sovle the problem (brute-force).
+    try solving these with pen/ paper oe a whiteboard first
+    
+2. First Interview question: Anagram Check!
+    Given two strings, check to see if they are anagrams. 
+    EX: 'public relations' is an anagram of 'crap built on lies'
+    note: ignore spaces and capitalization.
+    
+    Code!:
+    def check_anagram(a,b):
+      a = a.replace(' ','').lower()
+      b = b.replace(' ','').lower()
+      return sorted(a)==sorted(b)
+    print(check_anagram(a,b))
+    
+3. Second : Paired Sum
+    Given an integer array, output all the unique pairs that sumuo to a speci=fic value k
+    so the input [1,3,2,2],4  return(1,3),(2,2)
+    Code!:
+    alist=[1,3,2,2]
+    k = 4
+    def check_sum(arr,k):
+        if len(arr) < 2:
+            return
+        # sets for tracking
+        seen = set()
+        output = set()
+        for num in arr:
+            target = k - num
+            if target not in seen:
+                seen.add(num)
+            else:
+                output.add(((min(num,target)), max(num,target) ))
+        print('\n'.join(map(str,list(output))))
+
+    check_sum(alist,k)
