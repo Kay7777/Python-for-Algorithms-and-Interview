@@ -64,3 +64,10 @@
       self.capacity = new_cap
    def make_array(self,new_cap):
       return (new_cap * ctypes.py_object)()
+      
+5. Amortized Analysis
+    steps: 1. allocate memory for a larger array of size, typically twice the old array
+            2. copy the contents of old array to new array 
+            3. free the old array
+            cost: O(1)
+         
