@@ -1,0 +1,43 @@
+1. Stack Overview:
+    A stack is an ordered collection of items there the addition of new items 
+    and the removal of existing items alwasy takes place at the same end.
+    This end is commonly referred to as the top
+    The end opposite the top is known as the base
+    The base of the stack is significant since items stored in that stack that are closer to the base represent 
+    those that have been in the stack the longest
+    ## The most recently added item is the one that is in position to be removes firstly ##
+    Newer items are near the top, older items are near the base!
+    ## last add , first out! ##
+    
+2. stack()  to create a new srtack
+    push() add a new
+    pop()  return and delete the top item
+    peek() return the top but not delete
+    isEmpty() check is it empty
+    size() return the num of it 
+    # we alwasy use list as a stack
+    
+3. Queue Overview
+    # A queue is an ordered collection of items where the addition of new items happens at one end, called the rear and the removal of 
+    existing items occurs at the other end, commonoy called the font!
+    # As the element enters the queue it starts ar the rear and makes its way toward the fonr waiting until 
+    that ime when it is the next elemtent to ve removed.
+    ### First in First out!!! ###
+    
+4. Queue
+    Queue() a new queue
+    enqueue()  add a new item
+        return self.items.insert(0,item)
+    dequeue()   delete the oldest item
+        return self.items.pop()
+    isEmpty()   checke empoty or not
+        return self.items == []
+    size()
+        return len(self.items)
+        
+ 5. Deque
+    A deque also konwn as adouble ended queue is an ordered colection of items similar to the queue.
+    It has two end a front an a rear and the items remain positioned in the collection.
+    New items can be added at either the front or the rear.
+    You can design the push and pop funtion you want!
+    
