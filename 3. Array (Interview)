@@ -68,3 +68,29 @@
             result ^= num
             print result
         return result
+        
+        
+5. Forth        
+   given an array of integers find the largest continuous num
+   Solution:
+   def large_count_sum(arr):
+        if len(arr) == 0:
+            return 0
+        max_sum = curren_sum = arr[0]
+        for num in arr[1:]:
+            cuttentt_sum = max(current_sum + num, num)
+            max_sum = max(current_sum, max_sum)
+        return max_sum
+        
+        
+6. Fifth
+    Reverse the string
+    EX " like you" =>  "you like"
+    Solution`:
+    def rev_word1(s):
+        return "".join(reversed(s.split()))
+        or
+        return "".join(s.split()[::-1])
+            
+         
+   
