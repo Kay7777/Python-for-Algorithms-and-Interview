@@ -33,3 +33,56 @@
     A variation of the linear probing idea is called quadratic probing.
     Instead of using a constat skip value, we use a rehash funtion that increments the hash value by 1,3,5,7,9 and so on.
     
+    Another method is chaining!
+    
+    #### Implement Code!
+    # put: add a new key-value pair to the map, if the key is already in
+        # the map then replace the old value with the new val;ue.
+        # get: given a key, return the value stored in the map or None otherwise
+        class HashTable(obeject):
+            def __init__(self,size):
+                self.size = size
+                self.slots = [None] * self.size
+                self.data = [None] * self.size
+
+            def put(self,key,data):
+                hashvalue = self.hashfuntion(key,len(self.slots))
+                if self.slots[hashvalue] == None:
+                    self.slots[hashvalue] = key
+                    self.data[hashvalue] = data
+                else:
+                    if self.slots[hashvalue] == key:
+                        self.data[hashvalue] = data
+                    else:
+                        nextslot = self.rehash(hashvalue,len(self.slots))
+                        while self.slots[nextslot] != None and self.slots[nextslot] != key:
+                            nextslot = self.rehash(nextslot,len(self.slots))
+                        if self.slots[nextslot] == None:
+                            self.slots[nextslot] = key
+                            self.data[nextslot] = data
+                        else:
+                            self.data[nextslot] = data
+
+            def hashfuntion(self,key,size):
+                # the actual hash funtion
+                return key % size
+
+
+            def rehash(self,oldhash,size):
+                return (oldhash + 1) % size
+
+            def get(self,key):
+                startslot = self.hashfuntion(key,len(self.slots))
+                data = None
+                stop = False
+                found = False
+                position = startslot
+                while self.slots[position] != None and not found and not stop:
+                    if self.slots[position] == key:
+                        found = True
+                        data = self.data[position]
+                    else:
+                        position = self.rehash(position,len(self.slots))
+                        if position == startslot:
+                            stop = True
+                return data
