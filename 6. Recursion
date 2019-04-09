@@ -1,0 +1,30 @@
+1.Introduction to Recursion
+    The fisrt insrances of recursion is when recursion is used as a technique in which a funtion makes one ot more calls to itslef.
+    The second instance of recursion is when a data structiure uses smaller instances of the exact same type of data strcture when it represents itself.
+    
+    Factrial Example:
+    4! = 43! = 432! = 4321! if n=0,n!=1
+    Whenever you are trying to develop a recursive solution it is very important to think about the base case as your solution will need to return 
+    the base case once all the recursive cases have beem worked through.
+    
+    # Recursion Factorial example
+    def facturial(n):
+        if n==0:
+            return 1
+        return n * facturial(n-1)
+    print(facturial(4))
+    
+    # detemine dose the list contains all the phrase words, if yes return the words in a list
+    def word_split(phrase,listofwords,output = None):
+        if output is None:
+            output=[]
+        for word in listofwords:
+            if phrase.startwith(word):
+                output.append(word)
+                return word_split(phrase[len(word):], listofwords, output)
+        return output
+    print(word_split('themanran',['the','ran','man'])
+    
+    
+2. Memoization
+    
