@@ -86,3 +86,8 @@
                         if position == startslot:
                             stop = True
                 return data
+                
+       h = HashTable(5)
+       h[1] = 'one'
+       h[2] = 'two'
+       print(h[2]) >> 'two'
