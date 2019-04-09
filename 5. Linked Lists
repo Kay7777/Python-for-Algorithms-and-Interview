@@ -1,0 +1,64 @@
+1.Single Linked Lists
+    A single linked list, in its simplest form, is a collectiomn of nodes that collectively form a linear sequence.
+    Each node stores a reference to an object that is an element of the sequence. as well as a reference to the next node fo the list.
+    The list instance maintains member named head that identifies the first node of the list.
+    In some applications another member named tail that identifies tha last node of the list.
+    # To sum up, the first and last nmode of a linked list are known as the head and tail of the list.
+    We can identify the tail as tha node having None as its next reference.
+    This process is commonly known as traversing the linked list.
+    Each node is represented as a unique object, with that instance storing a reference to its element and a reference to the next node( or None).
+    Note the change of the diagram for simplicity.
+    
+    How to insert a new element at the head of the list:
+    1.we create a new node
+    2.set its element to the new element
+    3.set its next link to refer to the current head
+    4.then set the list's head to point to the new node
+    
+    How to insert a new element at the tail of the list:
+    1.we create a new node
+    2.assign its next reference to None
+    3.set the next reference of the tail to point to this new node
+    4.then update the tail reference itself to this new node
+    
+    Remove the head just reverse the steps of add!
+    ###Code implement!###
+    class Node(object):
+        def __init__(self,value):
+            self.value = value
+            self.nextnode = None
+    a = Node(1)
+    b = Node(2)
+    c = Node(3)
+    a.nextnode = b
+    b.nextnode = c
+    print(a.value)
+    print(a.nextnode.value)
+    
+    
+    
+2. Doubly linked list!
+    In a doubly linked list, we define a linked list in which each node keeps an explicit reference to the node before it and a reference to the node after it.
+    These lists allow a greater variety of O(1)-time update operations. including insertions and deletions
+    We continue to use the term next for the reference to the node that follows another
+    We have a new term prev for the reference to the node that precedes it!
+    We add special nodes at the both ends of the list,header and trailer
+    These dummy nodes are known as sentinels or guards
+    Every insertion into our doubly linked list representation will take place between a pair of existing nodes
+    When a new element is inserted at the fron of the sequence, we will simply add the new node between the header and the node that is currently after the header.
+    
+    ### Code implement!
+    class DoublyLinkedListNode(object):
+        def __init__(self,value):
+            self.value = value
+            self.next_node = None
+            self.prev_node = None
+
+    a = DoublyLinkedListNode(1)
+    b = DoublyLinkedListNode(2)
+    c = DoublyLinkedListNode(3)
+    a.next_node = b
+    b.prev_node = a
+    b.next_node = c
+    c.prev_node = b
+    print(b.prev_node.value)
