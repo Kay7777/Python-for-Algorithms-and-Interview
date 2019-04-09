@@ -1,0 +1,92 @@
+1.Threes properties
+    First is the tree in the computer is inverse
+    Second is the tree is that all of the children of one node are independent of the children of another node
+    Third os that each leaf node is unique.
+    
+2. Some Common Vocabulary Terms
+    Node: a ndoe is a fundamental part of a tree. it can have a mname which we call the key. A node may also have additinal information. we call this 
+    additional information the payload. while the payload information is not central to many tree algorithms, it is often critical in applications that 
+    make use of trees.
+    Edge: an edge connects two nodes to show that there is a relationship between them. every node is connected by exactly one incoming 
+    edge from another node. each node may have several outgoing edges.
+    Path: a path is an ordered connected bu nodes and edges.
+    Children
+    Parents
+    Siblings
+    Leaf Node: have no children
+    Level: use the index from 0
+    Height: max level of the tree
+    Binary Tree: If each node in the tree has a max of two children, we say that the tree is a binary tree!.l
+    Recursion of a Tree
+    
+    
+3. Implement the tree
+    def BinaryTree(r):
+        return [r,[],[]]
+    def insertleft(root,newBranch):
+        t = root.pop(1)
+        if len(t) > 1:
+            root.insert(1,[newBranch,t,[]])
+        else:
+            root.insert(1,[newBranch,[],[]])
+        return root
+    def insertright(root,newBranch):
+        t = root.pop(2)
+        if len(t) > 1:
+            root.insert(2, [newBranch, [],t])
+        else:
+            root.insert(2, [newBranch, [], []])
+        return root
+    def getRootVal(root):
+        return root[0]
+    def setRootVal(root,newVal):
+        root[0] = newVal
+    def getleftchild(root):
+        return root[1]
+    def getrightchild(root):
+        return root[2]
+    r = BinaryTree(3)
+    print(insertleft(r,2))
+    print(insertright(r,4))
+    
+    
+    
+    
+    ######
+    class binarytree(object):
+        def __init__(self,rootobj):
+            self.key = rootobj
+            self.leftchild = None
+            self.rightchild = None
+
+        def insertleft(self,newnode):
+            if self.leftchild == None:
+                self.leftchild == binarytree(newnode)
+            else:
+                t = binarytree(newnode)
+                t.leftchild = self.leftchild
+                self.leftchild = t
+
+        def insertright(self,newnode):
+            if self.rightchild == None:
+                self.rightchild == binarytree(newnode)
+            else:
+                t = binarytree(newnode)
+                t.rightchild = self.rightchild
+                self.rightchild = t
+
+        def getrightchild(self):
+            return self.rightchild
+
+        def getleftchild(self):
+            return self.leftchild
+
+        def setrootval(self,obj):
+            self.key = obj
+        def getrootval(self):
+            return self.key
+
+    r = binarytree('a')
+    print(r.getrootval())
+    r.insertleft('b')
+    r.insertright('c')
