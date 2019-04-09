@@ -1,0 +1,35 @@
+1.Hashing
+    a hash table is a collection of items which are stored in such a way as to make it easy to find them later.
+    Each position of tha hash table, slots, can hold an item and is named by an integer value starting at0.
+    Initially, the hash table caontains no items so every slot is empty.
+    The mapping between an item and the slot where that item belongs in the hash table is called the hash funtion.
+    The hash funtion will take ang item in the collection and return an integer in the range of slot names, between 0 and m-1.
+    
+    ########
+    One has funtion we can use is the remainder method.
+    When presented with an item, the hash funtion is the item divided by the table size, this is then its slot number.
+    Ex: if we occupy 6 out of the 11 slots, this is referred to as the load factor, and is dentoed by num/tablesize=6/11
+    If hash table size is n, remainder hash funtion is h = item % n.
+    When we search for an tiem, we use the hash funtion to compute the slot name for the item and the mcheck the hash table to se if it is present.
+    This searching operation is O(1), since a constant amount of time is required to compute the hash value and then index thahash table at that location.
+    A hash funtion that maps each item into a unique slot is referred to as a perfect hash funtion.
+    Our goal is to create a hash funtion that minimized the number of collosions, is easy to compute, and evenly distributes the items in ths hash table.
+    
+    ########
+    The folding method fot constrcting hash funtions begins by dividing the item into equal-size pieces. These pieces are then added together to give the resulting has hvalue.
+    ########
+    Mid-square method, we first square the item, and the nextract some portion of the resulting value.
+    
+    Non-integer element:
+    The word car can be though of a sa sequence of ordinal value: ord('cat') = 023
+    
+    
+2.Collision Resolution 
+    One method for resolving collisions lookds into the hash table and tries to find another open slot to hold the item that casued the collision.
+    We could start at the original manner through the slots until we encounter the first slot that is empty.
+    This collosion resolution process is refered to as open addressing in that it tries to find the next open slot or adress in the hash table.
+    By systematically visting each slot one at a time, we are performing an open addressing technique called linear probing.
+    The general name for this process og looking for another slot after a collision is rehashing.
+    A variation of the linear probing idea is called quadratic probing.
+    Instead of using a constat skip value, we use a rehash funtion that increments the hash value by 1,3,5,7,9 and so on.
+    
