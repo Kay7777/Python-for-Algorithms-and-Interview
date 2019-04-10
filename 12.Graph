@@ -1,0 +1,92 @@
+1.Definition:
+    Vertax(Nodes)
+    Edges: if the edges in a graph are all one-way, we say that the graph is a directed graph, or a digraph!
+    weight: cost on the edge
+
+2. G = (V,E) where V is a set of vertices and E is a set of edges.
+    each Edge is a tuple (v,w) where w,v belongs to V
+    A subgraph s is a set of edges e and vertices v such that e belongs to E, and v belomnhgs to V
+    EX: V = {V0,V1,V2}
+        E = {(V0,V1,5),(V0,V2,3),(V1,V2,4)}
+    
+    Path!
+    Cycle
+      : Agraph with no cycles is called an Acyclic Graph
+        A directed graph with no cycle is called directed acyclic graph or a DAG
+        
+    
+3. Adjacency Matrix
+    One of the easist way to implement a graph is to use a two_dimentional matrix
+    In this matrix implementation, each of the roes and cols represent a vertex in the graph.
+    The value that is stored in the cell at hte intersection of row v and col w indicates if there si an esge from v to vertex w
+    When two vertices are connected by an edge, we say that they are adjcent.
+    Notice that most of the cells i nthe matrix are empty.
+    Because most of the cells are empty we say that this atrix is "sparse"
+    Since there is one row andcol for every vertex in the graph, the num of edges requied to fill the matirc is v^2
+    A matrix is full whem every vertex is connected to every other vertex!
+    
+    ##### Code Implement!
+    class Vertex:
+        def __init__(self,key):
+            self.id = key
+            self.connectedTo = {}
+
+        def addNeighbor(self,nbr,weight =0):
+            self.connectedTo[nbr] = weight
+
+        def getConnections(self):
+            return self.connectedTo.keys()
+
+        def getId(self):
+            return self.id
+
+        def getWeight(self, nbr):
+            return self.connectedTo[nbr]
+
+        def __str__(self):
+            return str(self.id)+' connected to:'+str([x.id for x in self.connectedTo])
+
+    class Graph:
+        def __init__(self):
+            self.vertList = {}
+            self.numVertices = 0
+
+        def addVertex(self,key):
+            self.numVertices += 1
+            newVertex = Vertex(key)
+            self.vertList[key] = newVertex
+            return newVertex
+
+        def getVertex(self,n):
+            if n in self.vertList:
+                return self.vertList[n]
+            else:
+                return None
+
+        def addEdge(self,f,t,cost=0):
+            # f is from vertex
+            # t is to vertex
+            if f not in self.vertList:
+                nv = self.addVertex(f)
+            if t not in self.vertList:
+                nv = self.addVertex(t)
+            self.vertList[f].addNeighbor(self.vertList[t],cost)
+
+        def getVertices(self):
+            return self.vertList.keys()
+
+        def __iter__(self):
+            return iter(self.vertList.values())
+
+        def __contains__(self, n):
+            return n in self.vertList
+
+    g = Graph()
+    for i in range(6):
+        g.addVertex(i)
+    g.addEdge(0,1,2)
+    g.addEdge(1,3,3)
+    g.addEdge(3,2,2)
+    g.addEdge(2,1,2)
+    for vertex in g:
+        print(vertex)
