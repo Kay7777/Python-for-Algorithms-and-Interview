@@ -1,0 +1,105 @@
+1. Shell Sort
+    the shell sort imporves on the insertion sort by breaking th original list into a number of smaller sublists
+    the unique way that these sublist are chosen is the key to the shell sort
+    instad of breaking the list into  sublist od contingous items, the shell sort uses an 
+    increament i to create a sublist by chooosing all items that are i items apart.
+    
+    ### Code Implement!
+    def shell_sort(arr):
+        sublistcount = len(arr)//2
+        while sublistcount > 0:
+            for start in range(sublistcount):
+                gap_insertion_sort(arr,start,sublistcount)
+            sublistcount = sublistcount//2
+        print(arr)
+
+    def gap_insertion_sort(arr,start,gap):
+        for i in range(start+gap,len(arr),gap):
+            currentvalue = arr[i]
+            position = i
+            while position >= gap and arr[position-gap] > currentvalue:
+                arr[position] = arr[position-gap]
+                position = position - gap
+            arr[position] = currentvalue
+    arr = [1,5,3,8,2,454,23,2]
+    shell_sort(arr)
+    
+    
+2.Merge Sort
+    Merge sort is a recursion algorithm that continually splits a list into half
+    if the lsit is empty ot has one item, it is sorted by definition( the base case)
+    If the list has more than one item, we splot thelist and recursively invoke a merge sort on bothe halves.
+    Once the two halves are sorted, the fundamental operation, called a merge , is performed.
+    Merging is the process of taking two smaller sorted lists and combinging them together into a single sorted new list!
+    
+    ### Code Implement!
+    def merge_sort(arr):
+        if len(arr) > 1:
+            mid = len(arr)//2
+            left = arr[:mid]
+            right = arr[mid:]
+            merge_sort(left)
+            merge_sort(right)
+            i = 0
+            j = 0
+            k = 0
+            while i < len(left) and j < len(right):
+                if left[i] < right[j]:
+                    arr[k] = left[i]
+                    i += 1
+                else:
+                    arr[k] = right[j]
+                    j += 1
+                k += 1
+            while i < len(left):
+                arr[k] = left[i]
+                i += 1
+                k += 1
+            while j < len(right):
+                arr[k] = right[j]
+                j += 1
+                k += 1
+    arr = [1,4,6,8,3,2,4,7,9,4,223,4,567,234]
+    merge_sort(arr)
+    print(arr)
+    
+    
+3.Quick Sort!
+    The quick sort uses divide and conquer to gain the same ads as the merge sort, while not suing addtional storage.
+    As a trade-off, however, it is possible that tje list mau not be divided in half.
+    When this happends ,we will sww that performance is diminished.
+    A quick sort first selects a value, which is called the pivot value.
+    The role of the pivot value is to assist with splitting the list.
+    
+    #### Implement!
+    def quick_sort(arr):
+        helper(arr,0,len(arr)-1)
+
+    def helper(arr,first,last):
+        if first < last:
+            splitpoint = partition(arr,first,last)
+            helper(arr,first,splitpoint-1)
+            helper(arr,splitpoint+1,last)
+
+    def partition(arr,first,last):
+        pivotbalue = arr[first]
+        leftmark = first+1
+        rightmark = last
+        done = False
+        while not done:
+            while leftmark <= rightmark and arr[leftmark] <= pivotbalue:
+                leftmark += 1
+            while arr[rightmark] >= pivotbalue and rightmark >= leftmark:
+                rightmark -= 1
+            if rightmark < leftmark:
+                done = True
+            else:
+                temp = arr[leftmark]
+                arr[leftmark] = arr[rightmark]
+                arr[rightmark] = temp
+        temp = arr[first]
+        arr[first] = arr[rightmark]
+        arr[rightmark] = temp
+        return rightmark
+        The actual position whre the picot value belomngs in the final sorted list,
+        commomly called the split point, will be used to divide the list for subsequent calls tothe quck sort.
