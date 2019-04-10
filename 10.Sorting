@@ -1,0 +1,72 @@
+1.Best Website Visual : sorting algorithms, visualgo, wikopedia.
+
+2.Bubble Sort
+    the bubble sort makes multiple passes throught alist
+    it compares adjacent items and exchanges those that are out of order
+    each pass through the list places the next largest value in its proper place
+    each item bubbles up to the location where belongs
+    
+    ### Implement Code!
+    def bubble(arr):
+        for n in range(len(arr)-1,0,-1):
+            for k in range(n):
+                if arr[k] > arr[k+1]:
+                    temp = arr[k]
+                    arr[k] = arr[k+1]
+                    arr[k+1] = temp
+    # range(len(arr)-1,0,-1)
+    # list = [1,2,3,4,5]
+    # >> 4,3,2,1
+    arr = [3,2,5,6,1]
+    bubble(arr)
+    print(arr)
+    >> [1,2,3,5,6]
+    
+3.Selection Sort
+    The selection sort impoves on the bubble sort by making only one exchange for 
+    every pass through the list.
+    A selection sort lookds for largesr value as it makes a pass and ,after completing the pass. 
+    place it in the proper location.
+    After the first pass, the largest item is i nthe correct place, afte rthe 
+    second oass, the next ;argest is in place
+    This process continues and require n-1 passes to sort n items 
+    cince the final item must be in place after the n-1 st pass.
+    
+    
+    ### Code Implement!
+    def selection(arr):
+        for fillslot in range(len(arr)-1,0,-1):
+            positionofmax = 0
+            for location in range(1,fillslot+1):
+                if arr[location] > arr[positionofmax]:
+                    positionofmax = location
+            temp = arr[fillslot]
+            arr[fillslot] = arr[positionofmax]
+            arr[positionofmax] = temp
+        print(arr)
+    arr = [1,4,2,67,3,89]
+    selection(arr)
+    
+    
+4.Insertion Sort
+    The insertion sort always maintains a sorted sublist in the lower positions of the list.
+    Each new item is the ninserted bacl into the previous sublist such that the sported sublist is item larger.
+    We begin by assuming that alist with one item is already sorted.
+    on each pass, one for each item 1 through n-1, the current item is checked against those in the already sorted sublist.
+    As we look back into the already sorted sublist, we shift thodse items that are greater to the right.
+    When we reach a smaller item ot the end of the sublist, the current item can beinserted.
+    
+    
+    ### Code Implement!
+    def insertion(arr):
+        for current in range(1,len(arr)):
+            temp = arr[current]
+            position = current
+            while position > 0 and arr[current] < arr[position-1]:
+                # key thing is to matain the arr[current] , only change the position -1
+                position = position-1
+            arr[current] = arr[position]
+            arr[position] = temp
+        print(arr)
+    arr = [1,9,2,7,4,5]
+    insertion(arr)
