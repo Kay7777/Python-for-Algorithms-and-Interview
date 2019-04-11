@@ -1,0 +1,13 @@
+1.Breath First Search(BFS):
+    -BFS is one of the easiest algorithms for searching a graph!
+    
+    EX1:Pocket Rube 2X2X2
+        vertex: for each possible state of cube  8!3^8
+        edge: for each possible move
+        finally 11 levels can sovle this
+        
+    -visit all the nodes reachable from given s
+    -O(V+E) time
+    -look at nodes reachable in O moves, 1 move, 2 move ...Adj[s]
+    -caredful to avoid duplicates(go back)
+     
