@@ -1,5 +1,69 @@
-1.Breath First Search(BFS):
+1. Word Ladder
+    - Fool > Pool > Poll --- > sale > sage
+    first we put all 3+1 words in one backet
+     - _ope: pope, rope, nope, hope...
+     - p_pe: pope, pipe, pape
+     - po_e: pope, pole, pore, pose, pore
+     - pop_: pope, pops
+   We can implement the scheme we have just described by using a dictionary.
+   The labels on the buckets we have just described are the keys in our dictionary.
+   The value stored for that key is a list of words.
+   Once we have the dictionary built we can create the graph.
+   We start our graph by creating a vertex for each word in the graph.
+   Then we create edges between all the vertices we find for words found under the same key in the dictionary.
+    
+    #### Code Implement!
+        def buildGraph(wordFile):
+            d = {}
+            g = Graph()
+
+            wfile = open(wordFile,'r')
+            # create buckets of words that differ by one letter
+            for line in wfile:
+                print line
+                word = line[:-1]
+                print word
+                for i in range(len(word)):
+                    bucket = word[:i] + '_' + word[i+1:]
+                    if bucket in d:
+                        d[bucket].append(word)
+                    else:
+                        d[bucket] = [word]
+            # add vertices and edges for words in the same bucket
+            for bucket in d.keys():
+                for word1 in d[bucket]:
+                    for word2 in d[bucket]:
+                        if word1 != word2:
+                            g.addEdge(word1,word2)
+            return g
+
+
+
+2.Breadth First Search(BFS):
     -BFS is one of the easiest algorithms for searching a graph!
+    -One good way to visualize what the breadth first search algorithm does is to imagine that it is building a tree, one
+    level of the tree at a time.
+    -A breadth first search adds all children of the starting vertex before it begins to discover any ofthe grandchildren.
+    -To keep track of its process, BFS colors each of the vertices white, gray, or black.
+    -All the vertices are initialized to white when thay are constructed. 
+    -A white vertex is an undiscovered vertex.
+    -When a vertex is initially discovered it is colored gray, and when BFS has completely explred a vertex it is colored black.
+    -This means that once a vertex is colored black, it has no white vertices adjacent to it.
+    -A gray node, on the other hand, may have some white vertices adjacent to it, indicating that some white vertices adjcent to it, indicating that there
+    are still additional vertices to explre.
+    
+    -BfS begins at the starting vertex s and colors start gray to show that it is currently being explored.
+    -Two other values, the distance and the predecessor, ar initialized to 0.
+    -Finally, start is placed on a Queue.
+    -The next step is tobegin to systematically explore vertices at the front of the queue.
+    -We enplore each new node at the front of the qeuue by iterating over its adjacency list. As each node on the adjacent list its examined its color is checked.
+    -If it is white, the vertex is unexplored, and four things happen:
+        -the new, unexplored vertex nbr, is colored gray
+        -The predecessor of nbr is set to the curren node curreuntil all the other 
+        -The distance to nbr is set to the distance to currentVert + 1
+        -Nbr is added to the end of a queue. Adding nbr to the end of the queue effectively schedules this node for further exploration, but not until
+        all the other vertices on the adjacency list of currentVert have been explored.
+        
     
     EX1:Pocket Rube 2X2X2
         vertex: for each possible state of cube  8!3^8
