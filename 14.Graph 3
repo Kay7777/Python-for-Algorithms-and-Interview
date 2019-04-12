@@ -1,0 +1,97 @@
+1. Knight's Tour
+    # n, the current depth in the search tree
+    # path, a list of vertices visited up to this point
+    # u, the vertex in the graph we wish to explore
+    # limit, the num of nodes in the path
+    The KnightTour funtion is recursive
+    def knightGraph(bdSize):
+        ktGraph = Graph()
+        for row in range(bdSize):
+            for col in range(bdSize):
+                nodeId = posToNodeId(row,col,bdSize)
+                newPositions = genLegalMoves(row,col,bdSize)
+                for e in newPositions:
+                    nid = posToNodeId(e[0],e[1],bdSize)
+                    ktGraph.addEdge(nodeId,nid)
+        return ktGraph
+
+    def posToNodeId(row, column, board_size):
+        return (row * board_size) + column
+    In [2]:
+    def genLegalMoves(x,y,bdSize):
+        newMoves = []
+        moveOffsets = [(-1,-2),(-1,2),(-2,-1),(-2,1),
+                       ( 1,-2),( 1,2),( 2,-1),( 2,1)]
+        for i in moveOffsets:
+            newX = x + i[0]
+            newY = y + i[1]
+            if legalCoord(newX,bdSize) and \
+                            legalCoord(newY,bdSize):
+                newMoves.append((newX,newY))
+        return newMoves
+
+    def legalCoord(x,bdSize):
+        if x >= 0 and x < bdSize:
+            return True
+        else:
+            return False
+    In [3]:
+    def knightTour(n,path,u,limit):
+            u.setColor('gray')
+            path.append(u)
+            if n < limit:
+                nbrList = list(u.getConnections())
+                i = 0
+                done = False
+                while i < len(nbrList) and not done:
+                    if nbrList[i].getColor() == 'white':
+                        done = knightTour(n+1, path, nbrList[i], limit)
+                    i = i + 1
+                if not done:  # prepare to backtrack
+                    path.pop()
+                    u.setColor('white')
+            else:
+                done = True
+            return done
+            
+            
+2. Depth-First Search
+     - The Knight's tour is a special case of a depth first search where the goal is to create the deepest depth first tree, without any
+    branches. The more genetal depth fisrt search is actually easier.
+     - Its goal is to search as deeplu as possible, connecting as many nodes in the grapha s possiblr and branching whrer neceessary.
+     - It is even possible that a depth first seach will creare morethan one tree.
+    when the depth fisrt search algorithm create a gourp of trees we call this a depth fisrt forest.
+     - As with the breadth fisrt search our depth first search make use of perdecessor links to s=constract the tree.
+     - There are two new instance varables  are the discovery and finish times.
+     - The discovery time tracks the num of steps in the algorithtm before a vertex is fisrt encounted
+     - The finish time is the num of stpes inthe algorithm before a vertex is colored balck
+     - The starting and finishing times for each node display a property called the parenthesis property.
+     - This property means that all the children of a particular node in thedepth fisrt tree have a later discovery
+    time and an ealier finish time than their parent!
+     - Edge classification:
+     1. tree edge:parent pointer, visit new vertex via edge
+     2. forward edge: node > descendant in tree
+     3. backward edge: node > ancestor in tree
+     4. cross edge: ndoes across the tree and tree 
+     - if there is a cycle, it means the DFS has a backward edge!
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            
