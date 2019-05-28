@@ -11,6 +11,19 @@
     EX: 'public relations' is an anagram of 'crap built on lies'
     note: ignore spaces and capitalization.
     
+    Remove (strip) space at the start of the string in Python
+        string.lstrip()
+    Remove (strip) space at the end of the string in Python
+        string.rstrip()
+    Remove (strip) white spaces from start and end of the string.
+        stirng.strip()
+    Remove all the spaces in python
+        stirng.replace(' ','')
+    Remove Duplicate Spaces in Python
+        import re
+        re.sub(' +', ' ',string)
+
+
     Code!:
     def check_anagram(a,b):
       a = a.replace(' ','').lower()
